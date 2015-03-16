@@ -1,0 +1,142 @@
+\documentclass{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{color}
+\usepackage{soul}
+
+\title{SciJS}
+\subtitle{Bringing Computing to JavaScript by Transpiling C/C++ Codebases via Emscripten}
+\date{\today}
+\author{}
+
+\newcommand{\mikola}[2]{\st{#1}\textcolor{red}{#2}}
+
+\begin{document}
+
+\maketitle
+
+\section{Personal Information}
+
+\begin{description}
+   \item [Name] Philipp Burckhardt
+   \item [University] Carnegie Mellon University
+   \item [Field of Study] Statistics and Public Policy
+   \item [Begin of studies] Fall 2013
+   \item [Expected graduation date] Fall 2018
+   \item [Degree] PhD
+   \item [Homepage] \url{http://philipp-burckhardt.com/}
+   \item [Email] pgb@andrew.cmu.edu
+   \item [Telephone] 412 576 5703
+   \item [Other Interests] Movies, Web Development, Technology
+\end{description}
+
+\section{Coding Skills}
+
+\begin{description}
+   \item [Programming Languages]:
+   \begin{itemize}
+   \item JavaScript (node.js, CoffeeScript, ECMAScript 6)
+   \item C, C++
+   \item R
+   \item HTML, CSS
+   \end{itemize}
+   \item [Relevant coursework]:
+   \begin{itemize}
+   \item Humboldt-University of Berlin: Linear Algebra, Convex Optimization, Information Systems
+   \item University of Oxford: Statistical Data Mining
+and Machine Learning, Advanced Simulation Methods, R Programming
+   \item CMU: Statistical Machine Learning, Statistical Computing 
+   \end{itemize}
+   \item [Contributions to Open Source Projects]: 
+   \begin{itemize}
+   \item My personal open-source projects: \href{https://github.com/Planeshifter/node-Rstats}{rstats}, a native C++ addon for node.js to connect to statistical programming language R, \href{https://github.com/Planeshifter/node-wordnet-magic}{wordnet-magic}, a collection of tools for working with Princeton's lexical database WordNet, \href{https://github.com/Planeshifter/text-miner}{text-miner} et al.
+   \item scijs: \href{https://github.com/scijs/deriv}{deriv module}, parts of GNU Scientific Library transpiled via \emph{emscripten}: \href{https://github.com/scijs/gsl-complex}{complex numbers}, 
+\href{https://github.com/scijs/gsl-cdf}{cumulative distribution functions},
+\href{https://github.com/scijs/gsl-sf}{special functions}
+   \item compute-io: Contributed nine npm modules so far, all with passing unit tests written using the Mocha test framework with Chai assertions and achieving $100\%$ code coverage.
+   \end{itemize}
+      \item [GitHub Account]: See my \href{https://github.com/Planeshifter}{GitHub page} for open-source packages, code samples from class assignments and other projects.
+      \item [npm Account]: See \href{https://www.npmjs.com/~planeshifter}{my npm account} for a complete list of published npm modules.
+\end{description}
+
+\section{Project proposal}
+
+\subsection*{\centering SciJS \\ Bringing Computing to JavaScript by Transpiling C/C++ Codebases via Emscripten}
+
+\begin{abstract}
+SciJS is an open ecosystem for high-performance numerical computing  in JavaScript. The goal of this project is to port selected C/C++ libraries bringing functionality from BLAS\cite{Blackford2002}, LAPACK\cite{Angerson1990}, and more to the web. The resulting libraries will be useful for advancing JavaScript's capabilities in the area of scientific computing. We anticipate these tools being useful for creating reproducible and accessible research, interactive scientific documents, and more generally in building high performance graphical web sites. If successful, these tools will improve the accessibility of research results, connecting diverse scientific and academic communities through the web.
+\end{abstract}
+
+\subsection*{Additional Information}
+
+Why bring numerical computing to JavaScript? There are  several:
+
+\begin{itemize}
+\item \emph{Reproducibility} Using npm ecosystem\footnote{See: \url{http://www.npmjs.com}}, it is possible to create versioned and exactly reproducible experiments.
+\item \emph{Accessibility} Scientific papers should be on the web, they should be interactive and this should be easy to do. The only way this is going to happen is if we can bring numerical computing capabilities to JavaScript. See reference: Brett Victor, Scientific Communication as Sequential Art\footnote{See: \url{http://worrydream.com/ScientificCommunicationAsSequentialArt/}}.
+\item \emph{Exploration} Because of the relative ease of installation and the wide availability of the language, JavaScript is a good fit to become a platform for research and experimentation. 
+\item \emph{New apps} More speculatively, bringing high performance low latency number crunching to the client could enable a new set of statistical and machine-learning tools.
+\end{itemize}
+
+
+While the potential for using the web as a platform for sharing scientific visualizations is there, it remains largely unrealized.  At least part of the problem is that historically JavaScript has not been considered suitable for scientific computing due to performance issues. Today this is no longer true, with modern interpreters like V8\footnote{See: \url{https://developers.google.com/v8/}}
+and SpiderMonkey\footnote{See: \url{https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey}} now routinely surpassing the performance of comparable dynamically typed languages such as Python and R\footnote{Benchmarks by the creators of the Julia programming language are available under the following URL: \url{http://julialang.org/}}. 
+
+While the language itself certainly seems more than capable of numerical computing, it presently is very difficult to do this sort of work in JavaScript. One of the main reasons why JavaScript is currently lacking in the area of numerical computing is the missing interoperability with legacy code bases which were often written in C. These code bases are thoroughly tested and numerically stable, whereas rewrites in pure JS might introduce errors. Additionally, a manual rewrite of all functionality in these code bases would be prohibitively costly.
+
+To advance JS in the area of scientific computing, it is therefore necessary to compile these libraries to JS. One possibility is to use the the \emph{emscripten} project\footnote{See: \url{http://kripken.github.io/emscripten-site/}}, which translates LLVM bytecode to JavaScript. Among other things, emscripten has been used to port the Unreal Engine 3 to JavaScript.
+
+Using emscripten, I plan to port a selection of performant and stable numerical libraries from C/C++ to JavaScript to be used in both \emph{node.js} and the browser. Functionality to be ported includes the following:
+\begin{itemize}
+\item Singular Value Decompositions and Eigendecompositions.
+\item Libraries for Convex Optimization (Linear programming, Quadratic programming, Semidefinite programming, Second order cone programming).
+\item Linear solvers.
+\item Foundational algorithms for machine learning such as Expectation Maximization.
+\end{itemize}
+
+This wide range of functionality will facilitate the development of packages in a wide area of disciplines and advance JavaScript as a platform for scientific computing.
+
+\subsection*{Detailed description}
+
+Having already successfully ported parts of the GNU Scientific Library to JavaScript, I have a clear idea of the requirements and remaining issues which need to be addressed. 
+
+As of now, a lot of boilerplate JS code is needed to interface with the original C and C++ functions, so one major goal of this project is to build up a collection of code snippets which can be quickly assembled to expose functions from C/C++ to JavaScript. 
+
+One potential issue is that objects have to be copied from JS to the emscripten heap, an operation which negatively affects performance. However, emscripten compiles code to asm.js\footnote{See: \url{http://asmjs.org/}}, a subset of JavaScript which in certain cases can almost reach native speed. 
+
+I have conducted preliminary experiments which show a significant cost of passing data from JS to the emscripten heap and vice versa, but the generated code can be much faster than a pure JavaScript implementation if sufficiently many calculations are done inside the original C/C++ code. Hence, the risk of failure of the proposed project is going be very low as there exist no potential show-stoppers. In case that I do not manage to keep to the proposed schedule, the harm would be relatively minor and only materialize in fewer ported libraries. 
+
+Since a major part of the project is to document the steps involved in porting numerical libraries and automate as much of them as possible, other contributors will be able to quickly join and port other libraries to JS, even long after the project has finished. 
+
+To provide a starting point for new projects, I plan to setup a skeleton project which can be used to quickly port any library and which comes with all the implemented functionality to make porting easier. This package will include an easy build process and templates for writing unit tests. This will make it easy to quickly generate working code. Also, it will work in favor of a standardized style and API, ensuring that future transpiled libraries will fit well into the SciJS project. 
+
+Getting other developers to participate and use the created packages will help to test and validate the code quality. Besides Mikola Lysenko, I hope that other people associated with the SciJS project might be able to test it and provide feedback. To attract more contributors to the project, I plan to write a weekly blog post outlining my progress and be active on IRC and social media to promote the SciJS project.
+
+\subsection*{Timeline}
+
+\begin{enumerate}
+\item (First half of June) Define a consistent and intuitive API how functions of C/C++ libraries should be called. This will involve some discussions with Mikola Lysenko, the author of the \emph{ndarray}\footnote{See: \url{https://www.npmjs.com/package/ndarray}} suite of JS packages and mentor for the \emph{SciJS} project. ndarrays will be used to call C/C++ functions having multi-dimensional arrays as parameters. 
+\item Build a collection of code snippets for different parameter configurations of functions to semi-automate the transpile process of C/C++ libraries. Write documentation explaining the involved steps. (Second half of June) 
+\item Start porting selected libraries for calculation of Singular Value Decompositions and Eigendecompositions, libraries for Convex Optimization (Linear programming, Quadratic programming, Semidefinite programming, Second order cone programming) and linear solvers. Additionally, I plan to port other algorithms such as Expectation Maximization which could be used as building blocks for many machine-learning algorithms. Write appropriate unit tests. (First half of July)
+\item Finish porting selected libraries. Create unit tests and fix remaining bugs. Write documentation of the exposed functions. Publish packages to npm. (Second half of July) 
+\item If all milestones are achieved at this point, start work on emscripten and investigate possibility of creating a common runtime environment for different packages. Work on this will probably have to continue after the end of the GSoC. (First week of August) 
+\item Code cleaning and polishing of documentation. (Second week of August)
+\end{enumerate}
+
+My plan would be to work on the project over the entire summer. I do not have a vacation planned, except for an extended weekend trip and attending a three day conference. Unforeseen events such as an accident should not threaten completion of the project, as it would be quite easy to drop a library from the list of source libraries which are going to be transpiled and the overall workflow of porting libraries will be documented and semi-automated very quickly such that the gaps could be filled later by me or other contributors to the project.
+
+\section{Availability}
+
+\begin{description}
+\item [Work hours per week] Full time (40 hours per week)
+\item [Other commitments] Not applicable
+\item [I feel comfortable discussing issues in the public developer forum] Yes
+\item [I feel comfortable posting a weekly update to the public developer forum] Yes
+\end{description}
+
+\clearpage
+\bibliographystyle{plain}
+\bibliography{GSoC}
+
+\end{document}
