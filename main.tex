@@ -46,7 +46,7 @@
    \item Humboldt-University of Berlin: Linear Algebra, Convex Optimization, Information Systems
    \item University of Oxford: Statistical Data Mining
 and Machine Learning, Advanced Simulation Methods, R Programming
-   \item CMU: Statistical Machine Learning, Statistical Computing 
+   \item CMU: Statistical Machine Learning, Statistical Computing, Statistical Graphics \& Visualization
    \end{itemize}
    \item [Contributions to Open Source Projects]: 
    \begin{itemize}
@@ -54,7 +54,7 @@ and Machine Learning, Advanced Simulation Methods, R Programming
    \item scijs: \href{https://github.com/scijs/deriv}{deriv module}, parts of GNU Scientific Library transpiled via \emph{emscripten}: \href{https://github.com/scijs/gsl-complex}{complex numbers}, 
 \href{https://github.com/scijs/gsl-cdf}{cumulative distribution functions},
 \href{https://github.com/scijs/gsl-sf}{special functions}
-   \item compute-io: Contributed nine npm modules so far, all with passing unit tests written using the Mocha test framework with Chai assertions and achieving $100\%$ code coverage.
+   \item compute-io: Contributed eleven npm modules so far, all with passing unit tests written using the Mocha test framework with Chai assertions and achieving $100\%$ code coverage.
    \end{itemize}
       \item [GitHub Account]: See my \href{https://github.com/Planeshifter}{GitHub page} for open-source packages, code samples from class assignments and other projects.
       \item [npm Account]: See \href{https://www.npmjs.com/~planeshifter}{my npm account} for a complete list of published npm modules.
@@ -70,7 +70,7 @@ SciJS is an open ecosystem for high-performance numerical computing  in JavaScri
 
 \subsection*{Additional Information}
 
-Why bring numerical computing to JavaScript? There are  several:
+Why bring numerical computing to JavaScript? There are several reasons:
 
 \begin{itemize}
 \item \emph{Reproducibility} Using npm ecosystem\footnote{See: \url{http://www.npmjs.com}}, it is possible to create versioned and exactly reproducible experiments.
@@ -116,7 +116,7 @@ Getting other developers to participate and use the created packages will help t
 \subsection*{Timeline}
 
 \begin{enumerate}
-\item (First half of June) Define a consistent and intuitive API how functions of C/C++ libraries should be called. This will involve some discussions with Mikola Lysenko, the author of the \emph{ndarray}\footnote{See: \url{https://www.npmjs.com/package/ndarray}} suite of JS packages and mentor for the \emph{SciJS} project. ndarrays will be used to call C/C++ functions having multi-dimensional arrays as parameters. 
+\item Define a consistent and intuitive API how functions of C/C++ libraries should be called. This will involve some discussions with Mikola Lysenko, the author of the \emph{ndarray}\footnote{See: \url{https://www.npmjs.com/package/ndarray}} suite of JS packages and mentor for the \emph{SciJS} project. ndarrays will be used to call C/C++ functions having multi-dimensional arrays as parameters. (First half of June) 
 \item Build a collection of code snippets for different parameter configurations of functions to semi-automate the transpile process of C/C++ libraries. Write documentation explaining the involved steps. (Second half of June) 
 \item Start porting selected libraries for calculation of Singular Value Decompositions and Eigendecompositions, libraries for Convex Optimization (Linear programming, Quadratic programming, Semidefinite programming, Second order cone programming) and linear solvers. Additionally, I plan to port other algorithms such as Expectation Maximization which could be used as building blocks for many machine-learning algorithms. Write appropriate unit tests. (First half of July)
 \item Finish porting selected libraries. Create unit tests and fix remaining bugs. Write documentation of the exposed functions. Publish packages to npm. (Second half of July) 
